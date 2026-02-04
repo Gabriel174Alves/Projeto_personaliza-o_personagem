@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Infinity Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(180deg, hsl(230 25% 8%), hsl(230 25% 4%));
+            background-image:
+                radial-gradient(ellipse at 20% 20%, hsl(270 60% 20% / 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, hsl(195 90% 30% / 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, hsl(230 25% 10%) 0%, hsl(230 25% 6%) 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: hsl(45 30% 90%);
+            overflow-x: hidden;
+        }
+
+        /* Header com título */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, hsl(45 90% 55%), hsl(35 95% 45%));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px hsl(45 90% 55% / 0.4);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .subtitle {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            color: hsl(230 10% 65%);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-weight: 600;
+        }
+
+        .decorative-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .line {
+            height: 1px;
+            width: 3rem;
+            background: linear-gradient(90deg, transparent, hsl(45 90% 55%), transparent);
+        }
+
+        .diamond {
+            width: 6px;
+            height: 6px;
+            background: hsl(45 90% 55%);
+            transform: rotate(45deg);
+            box-shadow: 0 0 10px hsl(45 90% 55% / 0.6);
+        }
+
+        /* Container do formulário */
+        .container {
+            background: linear-gradient(145deg, hsl(230 20% 14% / 0.95), hsl(230 25% 8% / 0.98));
+            backdrop-filter: blur(20px);
+            border: 1px solid hsl(230 20% 25% / 0.3);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow:
+                0 25px 50px hsl(230 25% 0% / 0.5),
+                0 0 50px hsl(45 90% 55% / 0.1),
+                inset 0 1px 0 hsl(230 20% 30% / 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, hsl(45 90% 55%), transparent);
+        }
+
+        /* Título do formulário */
+        .form-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: hsl(45 90% 55%);
+            text-shadow: 0 0 20px hsl(45 90% 55% / 0.5);
+        }
+
+        /* Formulário */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: linear-gradient(145deg, hsl(230 20% 15%), hsl(230 25% 10%));
+            border: 1px solid hsl(230 20% 25%);
+            border-radius: 0.75rem;
+            color: hsl(45 30% 90%);
+            font-size: 1rem;
+            font-family: 'Rajdhani', sans-serif;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: hsl(45 90% 55%);
+            box-shadow: 0 0 20px hsl(45 90% 55% / 0.3);
+            background: linear-gradient(145deg, hsl(230 20% 16%), hsl(230 25% 11%));
+        }
+
+        .input-group input::placeholder {
+            color: hsl(230 10% 55%);
+        }
+
+        /* Botão */
+        .btn-primary {
+            background: linear-gradient(135deg, hsl(45 90% 55%), hsl(35 95% 45%));
+            border: none;
+            border-radius: 0.75rem;
+            padding: 1rem 2rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: hsl(230 25% 8%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 4px 15px hsl(45 90% 55% / 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px hsl(45 90% 55% / 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Mensagem de erro */
+        .error {
+            background: linear-gradient(145deg, hsl(0 70% 15%), hsl(0 70% 10%));
+            border: 1px solid hsl(0 70% 40%);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            color: hsl(0 80% 70%);
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        /* Link */
+        .link {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid hsl(230 20% 25%);
+        }
+
+        .link a {
+            color: hsl(45 90% 55%);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .link a:hover {
+            color: hsl(45 100% 70%);
+            text-shadow: 0 0 10px hsl(45 90% 55% / 0.5);
+        }
+
+        /* Responsividade */
+        @media (max-width: 480px) {
+            .container {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .title {
+                font-size: 3rem;
+            }
+        }
+
+        /* Animações */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .container {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1 class="title">INFINITY</h1>
+        <h1 class="title">ADVENTURE</h1>
+        <p class="subtitle">Forje seu Destino</p>
+        <div class="decorative-line">
+            <div class="line"></div>
+            <div class="diamond"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <!-- Formulário de Login -->
+    <div class="container">
+        <h2 class="form-title">Entrar</h2>
+        <div id="error" class="error"></div>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Nome do Herói" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Senha Mística" required>
+            </div>
+            <button type="submit" class="btn-primary">Iniciar Jornada</button>
+        </form>
+        <div class="link">
+            <a href="/cadastro">Não possui uma conta? <strong>Registre-se</strong></a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error');
+
+            // Limpar erro anterior
+            errorDiv.style.display = 'none';
+            errorDiv.textContent = '';
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Definir flag de autenticação no localStorage
+                    localStorage.setItem('authenticated', 'true');
+                    window.location.href = '/personalizacao';
+                } else {
+                    errorDiv.textContent = result.message;
+                    errorDiv.style.display = 'block';
+                }
+            } catch (error) {
+                errorDiv.textContent = 'Erro ao conectar com o reino. Tente novamente.';
+                errorDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

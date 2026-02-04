@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 25% 8%;
+    --foreground: 45 30% 90%;
+
+    --card: 230 20% 12%;
+    --card-foreground: 45 30% 90%;
+
+    --popover: 230 20% 12%;
+    --popover-foreground: 45 30% 90%;
+
+    --primary: 45 90% 55%;
+    --primary-foreground: 230 25% 8%;
+
+    --secondary: 270 60% 50%;
+    --secondary-foreground: 45 30% 90%;
+
+    --muted: 230 15% 20%;
+    --muted-foreground: 230 10% 55%;
+
+    --accent: 195 90% 50%;
+    --accent-foreground: 230 25% 8%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 45 30% 90%;
+
+    --border: 230 20% 20%;
+    --input: 230 20% 15%;
+    --ring: 45 90% 55%;
+
+    --radius: 0.75rem;
+
+    /* Custom game colors */
+    --gold: 45 90% 55%;
+    --gold-glow: 45 100% 65%;
+    --mystic-purple: 270 60% 50%;
+    --mystic-purple-glow: 270 80% 65%;
+    --arcane-blue: 195 90% 50%;
+    --arcane-blue-glow: 195 100% 60%;
+    --ember: 15 90% 55%;
+    --ember-glow: 15 100% 65%;
+
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(45 90% 55%), hsl(35 95% 45%));
+    --gradient-mystic: linear-gradient(135deg, hsl(270 60% 50%), hsl(290 70% 40%));
+    --gradient-arcane: linear-gradient(135deg, hsl(195 90% 50%), hsl(210 85% 45%));
+    --gradient-dark: linear-gradient(180deg, hsl(230 25% 12%), hsl(230 25% 6%));
+
+    /* Shadows */
+    --shadow-gold: 0 0 30px hsl(45 90% 55% / 0.4);
+    --shadow-mystic: 0 0 30px hsl(270 60% 50% / 0.4);
+    --shadow-arcane: 0 0 30px hsl(195 90% 50% / 0.4);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-rajdhani;
+    background-image: 
+      radial-gradient(ellipse at 20% 20%, hsl(270 60% 20% / 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, hsl(195 90% 30% / 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, hsl(230 25% 10%) 0%, hsl(230 25% 6%) 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-rajdhani {
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .glow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .glow-mystic {
+    box-shadow: var(--shadow-mystic);
+  }
+
+  .glow-arcane {
+    box-shadow: var(--shadow-arcane);
+  }
+
+  .text-glow-gold {
+    text-shadow: 0 0 20px hsl(45 90% 55% / 0.6), 0 0 40px hsl(45 90% 55% / 0.3);
+  }
+
+  .text-glow-arcane {
+    text-shadow: 0 0 20px hsl(195 90% 50% / 0.6), 0 0 40px hsl(195 90% 50% / 0.3);
+  }
+
+  .bg-gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .bg-gradient-mystic {
+    background: var(--gradient-mystic);
+  }
+
+  .bg-gradient-arcane {
+    background: var(--gradient-arcane);
+  }
+
+  .card-glass {
+    background: linear-gradient(145deg, hsl(230 20% 14% / 0.9), hsl(230 25% 8% / 0.95));
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(230 20% 25% / 0.5);
+  }
+
+  .input-game {
+    @apply bg-input border border-border rounded-xl px-4 py-3 
+           focus:ring-2 focus:ring-primary/50 focus:border-primary/50 
+           outline-none transition-all duration-300;
+  }
+}
+
+/* Custom range slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  background: linear-gradient(90deg, hsl(230 20% 20%), hsl(230 20% 25%));
+  border-radius: 4px;
+  border: 1px solid hsl(230 20% 30%);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--gradient-gold);
+  border-radius: 50%;
+  margin-top: -9px;
+  box-shadow: 0 0 15px hsl(45 90% 55% / 0.5);
+  border: 2px solid hsl(45 100% 70%);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px hsl(45 90% 55% / 0.7);
+}
+
+input[type="range"]::-moz-range-track {
+  height: 8px;
+  background: linear-gradient(90deg, hsl(230 20% 20%), hsl(230 20% 25%));
+  border-radius: 4px;
+  border: 1px solid hsl(230 20% 30%);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: var(--gradient-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 15px hsl(45 90% 55% / 0.5);
+  border: 2px solid hsl(45 100% 70%);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes orb-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-orb-rotate {
+  animation: orb-rotate 20s linear infinite;
+}
