@@ -76,7 +76,7 @@ O frontend estará rodando em: **http://localhost:5173**
 
 ```sql
 CREATE DATABASE IF NOT EXISTS hero_forge;
-USE hero_forge;
+USE hero_forge_db;
 ```
 
 ### Passo 2: Configurar credenciais
