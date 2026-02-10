@@ -1,4 +1,4 @@
-# Hero Forge Studio 🗡️⚔️
+CB Games  🗡️⚔️
 
 Um sistema completo de criação e gerenciamento de personagens para RPG/Jogos, com frontend em React/TypeScript e backend em Flask.
 
